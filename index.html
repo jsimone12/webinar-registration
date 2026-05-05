@@ -354,7 +354,10 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
+    emailjs.init('nqDcMPEGBKUEzopfy');
+
     async function handleSubmit() {
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
@@ -373,6 +376,12 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ Name: name, Email: email, Timestamp: new Date().toISOString() })
+        });
+
+        await emailjs.send('service_31uw8mo', 'template_o8tg7rz', {
+          to_name: name,
+          to_email: email,
+          message: 'You are registered for the How to Make Money Online webinar this Thursday. Here is your Zoom link to join: https://us06web.zoom.us/j/86755800039 -- Save this email so you have it handy. We will see you on the inside.'
         });
 
         document.getElementById('form-wrap').style.display = 'none';
