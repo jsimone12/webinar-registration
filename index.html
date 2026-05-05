@@ -328,6 +328,10 @@
               <input type="text" id="name" placeholder="Your first name" required />
             </div>
             <div class="field">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="(555) 555-5555" />
+            </div>
+            <div class="field">
               <label for="email">Email Address</label>
               <input type="email" id="email" placeholder="you@example.com" required />
             </div>
@@ -360,6 +364,7 @@
 
     async function handleSubmit() {
       const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
       const email = document.getElementById('email').value.trim();
       const btn = document.getElementById('submit-btn');
 
@@ -375,7 +380,7 @@
         await fetch('https://api.sheetmonkey.io/form/f2nGaYP56siDQJHMt6sxfu', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ Name: name, Email: email, Timestamp: new Date().toISOString() })
+          body: JSON.stringify({ Name: name, Email: email, Phone: phone, Timestamp: new Date().toISOString() })
         });
 
         await emailjs.send('service_31uw8mo', 'template_o8tg7rz', {
